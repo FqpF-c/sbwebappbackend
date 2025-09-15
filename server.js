@@ -34,6 +34,22 @@ app.use((req, res, next) => {
   next();
 });
 
+// Root endpoint
+app.get('/', (req, res) => {
+  res.json({
+    status: 'OK',
+    message: 'SkillBench OTP Backend is running',
+    version: '1.0.0',
+    endpoints: {
+      health: '/health',
+      otpget: '/otpget',
+      sendOTP: '/send-otp',
+      verifyOTP: '/verify-otp'
+    },
+    timestamp: new Date().toISOString()
+  });
+});
+
 // Health check endpoint
 app.get('/health', (req, res) => {
   res.json({
